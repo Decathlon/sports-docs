@@ -11,6 +11,6 @@ Usage of this API depends on authenticatio with the Decathlon Connect API with O
 `PUT`, and `DELETE` requests. Remember: this is for internal use only.
 
 <aside class="notice">
-  You can obtain instruction by contacting the development team through our 
+  You can obtain instructions by contacting the development team through our 
   <a href="https://plus.google.com/u/2/communities/110282251333522025242">Google Community</a>
 </aside>
