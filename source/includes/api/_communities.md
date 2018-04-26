@@ -36,6 +36,7 @@ curl "https://communities-api.herokuapp.com/api/v1/communities"
 
 This endpoint retrieves all communities meeting specific criteria
 
+
 ### HTTP Request
 
 `GET https://communities-api.herokuapp.com/api/v1/communities`
@@ -54,6 +55,8 @@ sport     | `175`            | Filters results based on Decathlon Sport ID
 nearby[]  | `'45.91,-73,58'` | The current location of the end-user making the request. Used to calculate proximity.
 featured  | `true`           | Boolean representing whether a community should be featured or not
 partner   | `false`          | Boolean representing whether a community is a Décathlon partner
+
+> For performance reasons, results are paginated by a max of 25 communities per page. `?page=` parameter is accepted for the subsequent list of results.
 
 ## Adding Communities
 
