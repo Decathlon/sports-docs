@@ -55,8 +55,8 @@ sport     | `175`            | Filters results based on Decathlon Sport ID
 nearby[]  | `'45.91,-73,58'` | The current location of the end-user making the request. Used to calculate proximity.
 featured  | `true`           | Boolean representing whether a community should be featured or not
 partner   | `false`          | Boolean representing whether a community is a Décathlon partner
+page      | `1`              | For performance reasons, results are paginated by 25 items per page
 
-> For performance reasons, results are paginated by a max of 25 communities per page. `?page=` parameter is accepted for the subsequent list of results.
 
 ## Adding Communities
 
