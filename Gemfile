@@ -12,6 +12,6 @@ gem 'nokogiri', '~> 1.6.8'
 gem 'redcarpet', '~> 3.4.0'
 gem 'rouge', '~> 2.0.5'
 
+gem 'foreman'
 gem 'puma'
 gem 'rake'
-gem 'rake-contrib'
