@@ -1,1 +1,1 @@
-web: bundle exec middleman server -p $PORT -e PRODUCTION --strip-index-file --no-trailing-slash --watcher-disable
+web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}

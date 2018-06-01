@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Unique header generation
 require './lib/unique_head.rb'
 
@@ -55,3 +57,9 @@ set :port, 4567
 helpers do
   require './lib/toc_data.rb'
 end
+
+# Use “pretty” URLs (without the `.html` suffix)
+activate :directory_indexes
+
+# Append hashes to compiled assets
+activate :asset_hash
