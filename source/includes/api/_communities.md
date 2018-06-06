@@ -78,12 +78,11 @@ curl
     "partner": false,
     "link": "http://example.com",
     "source": "google",
-    "lat": "45.522938",
-    "lng": "-73.581507",
-    "city": "montreal",
-    "province": "qc",
-    "country": "canada",
-    "user_id": 1,
+    "lat": 45.522938,
+    "lng": -73.581507,
+    "city": "Montreal",
+    "province": "QC",
+    "country": "CA",
     "description": "lorem ipsum dolor amet sit...",
     "sports_attributes": [
       { "sport": 123 },
@@ -103,8 +102,9 @@ This endpoint creates communities based on a Sport ID.
 
 `user_id`, `title`, `source`, `link`, `lat`, `lng` and the `sport_attributes` array are mandatory.
 
-The `sport_attributes` must carry at least 1 sport.
+`country` accepts a 2-letter country code according to the [ISO 3166-1 alpha 2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
 
+The `sport_attributes` must carry at least 1 sport.
 
 ## Updating/Editing Communities
 ```shell
@@ -143,10 +143,9 @@ This endpoint updates communities parameters.
     "source": "google",
     "lat": "45.522938",
     "lng": "-73.581507",
-    "city": "montreal",
-    "province": "qc",
-    "country": "canada",
-    "user_id": 1,
+    "city": "Montreal",
+    "province": "QC",
+    "country": "CA",
     "description": "lorem ipsum dolor amet sit...",
     "sports_attributes": [
       { "sport": 123 },
