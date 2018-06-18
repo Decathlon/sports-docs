@@ -10,7 +10,7 @@ toc_footers:
 includes:
   - authentication
   - errors
-  - api/communities
+  - api/partners
   - contributing
   - roadmap
 

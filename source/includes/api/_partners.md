@@ -1,4 +1,4 @@
-# Communities
+# Partners
 
 ## Search for Partners
 
