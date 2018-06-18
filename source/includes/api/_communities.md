@@ -1,9 +1,9 @@
 # Communities
 
-## Search for communities
+## Search for Partners
 
 ```shell
-curl "https://communities-api.herokuapp.com/api/v1/communities"
+curl "https://partners-api.herokuapp.com/api/v1/partners"
 ```
 
 > JSON response:
@@ -34,12 +34,12 @@ curl "https://communities-api.herokuapp.com/api/v1/communities"
 
 ```
 
-This endpoint retrieves all communities meeting specific criteria
+This endpoint retrieves all partners meeting specific criteria
 
 
 ### HTTP Request
 
-`GET https://communities-api.herokuapp.com/api/v1/communities`
+`GET https://partners-api.herokuapp.com/api/v1/partners`
 
 ### Query Parameters
 
@@ -53,8 +53,8 @@ Parameter | Example          | Description
 --------- | -------          | -----------
 sport     | `175`            | Filters results based on Decathlon Sport ID
 nearby[]  | `'45.91,-73,58'` | The current location of the end-user making the request. Used to calculate proximity.
-featured  | `true`           | Boolean representing whether a community should be featured or not
-partner   | `false`          | Boolean representing whether a community is a Décathlon partner
+featured  | `true`           | Boolean representing whether a partner should be featured or not
+partner   | `false`          | Boolean representing whether a partner is a Décathlon partner
 page      | `1`              | For performance reasons, results are paginated by 25 items per page
 
 
@@ -65,14 +65,14 @@ curl
   -X POST 
   -H "Content-Type: application/json" 
   -d "@data.json" 
-  https://communities-api.herokuapp.com/api/v1/communities
+  https://partners-api.herokuapp.com/api/v1/partners
 ```
 
 > JSON request [@data.json]
 
 ```json
 {
-  "community": {
+  "partner": {
     "title": "hello",
     "featured": false,
     "partner": false,
@@ -92,11 +92,11 @@ curl
 }
 ```
 
-This endpoint creates communities based on a Sport ID.
+This endpoint creates partners based on a Sport ID.
 
 ### HTTP Request
 
-`POST https://communities-api.herokuapp.com/api/v1/communities`
+`POST https://partners-api.herokuapp.com/api/v1/partners`
 
 ### Request Parameters
 
@@ -112,30 +112,30 @@ curl
   -X PUT
   -H "Content-Type: application/json"
   -d "@data.json"
-  https://communities-api.herokuapp.com/api/v1/communities/:community_id
+  https://partners-api.herokuapp.com/api/v1/partners/:partner_id
 ```
 
 > JSON request [@data.json]
 
 ```json
 {
-  "community": {
+  "partner": {
     "title": "Updated Title"
   }
 }
 ```
-This endpoint updates communities parameters.
+This endpoint updates partners parameters.
 
 ### HTTP Request
 
-`POST https://communities-api.herokuapp.com/api/v1/communities/:community_id`
+`POST https://partners-api.herokuapp.com/api/v1/partners/:partner_id`
 
 > JSON response
 
 ```json
 
 {
-  "community": {
+  "partner": {
     "title": "Updated Title",
     "featured": false,
     "partner": false,

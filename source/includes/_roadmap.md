@@ -1,11 +1,11 @@
 # Roadmap
 
 ## 1.0
-  * List all communities
-  * Filter Communities by Sport, proximity and partnership status
+  * List all Partners
+  * Filter Partners by Sport, proximity and partnership status
   * Create/Update/Delete communities
   * Geolocation-based listing of communities
-  * Communities crowdsourcing
+  * Partner crowdsourcing
   * Decathlon Connect Authentication
   * Release: April 2018
 

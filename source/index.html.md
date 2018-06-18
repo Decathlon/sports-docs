@@ -19,7 +19,7 @@ search: true
 
 # Introduction
 
-The Decathlon Communities API can be used by any developer worldwide to obtain details of communities where 
+The Decathlon Partners API can be used by any developer worldwide to obtain details of communities where 
 certain sports can be practiced. This data is primarily sourced from Decathlon's global network of sport experts.
 
 Currently this API is for **INTERNAL USE ONLY** until we've fully completed our authorization controls in conjunction
