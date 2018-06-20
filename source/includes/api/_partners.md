@@ -3,7 +3,7 @@
 ## Search for Partners
 
 ```shell
-curl "https://partners-api.herokuapp.com/api/v1/partners"
+curl "https://partners-decathlon.herokuapp.com/api/v1/partners"
 ```
 
 > JSON response:
@@ -39,7 +39,7 @@ This endpoint retrieves all partners meeting specific criteria
 
 ### HTTP Request
 
-`GET https://partners-api.herokuapp.com/api/v1/partners`
+`GET https://partners-decathlon.herokuapp.com/api/v1/partners`
 
 ### Query Parameters
 
@@ -65,7 +65,7 @@ curl
   -X POST 
   -H "Content-Type: application/json" 
   -d "@data.json" 
-  https://partners-api.herokuapp.com/api/v1/partners
+  https://partners-decathlon.herokuapp.com/api/v1/partners
 ```
 
 > JSON request [@data.json]
@@ -96,7 +96,7 @@ This endpoint creates partners based on a Sport ID.
 
 ### HTTP Request
 
-`POST https://partners-api.herokuapp.com/api/v1/partners`
+`POST https://partners-decathlon.herokuapp.com/api/v1/partners`
 
 ### Request Parameters
 
@@ -112,7 +112,7 @@ curl
   -X PUT
   -H "Content-Type: application/json"
   -d "@data.json"
-  https://partners-api.herokuapp.com/api/v1/partners/:partner_id
+  https://partners-decathlon.herokuapp.com/api/v1/partners/:partner_id
 ```
 
 > JSON request [@data.json]
@@ -128,7 +128,7 @@ This endpoint updates partners parameters.
 
 ### HTTP Request
 
-`POST https://partners-api.herokuapp.com/api/v1/partners/:partner_id`
+`POST https://partners-decathlon.herokuapp.com/api/v1/partners/:partner_id`
 
 > JSON response
 

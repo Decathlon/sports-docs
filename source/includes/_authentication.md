@@ -1,7 +1,7 @@
 # Authentication
 
 ```shell
-curl "https://partners-api.herokuapp.com/api/v1/partners"
+curl "https://partners-decathlon.herokuapp.com/api/v1/partners"
   -H "Authorization: Bearer XXXXXX"
 ```
 
