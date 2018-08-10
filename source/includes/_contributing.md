@@ -17,4 +17,4 @@ Here are some ways *you* can contribute:
 2. Create a *[new-feature]* branch
 3. Implement your feature or bug fix.
 4. Add, commit, and push your changes.
-5. Submit a Pull Request through Gitlab's UI.
+5. Submit a Pull Request through Github's UI.
