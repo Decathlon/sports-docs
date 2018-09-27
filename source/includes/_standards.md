@@ -1,5 +1,23 @@
 # Standards
 
+## Versioning
+
+Since `V2` of our API, we've adopted a header-based versioning rather than a
+path-based standard.
+
+To select the version of our API you would like to use, simply pass in the
+following header parameter with your request. (Replace `v2` with the desired
+version)
+
+```Accept: application/vnd.decathlon.v2+json```
+
+If no parameters are passed in, we'll serve up the latest stable version of our
+API
+
+<aside class="notice">
+  V1 of this API is still accessible at /api/v1/sports
+</aside>
+
 ## Pagination
 
 Pagination links (next, previous, first and last) are part of the response
