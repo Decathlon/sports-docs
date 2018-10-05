@@ -3,7 +3,7 @@
 ## List Sports
 
 ```shell
-curl "https://sports-decathlon.herokuapp.com/api/v1/sports"
+curl "https://sports-decathlon.herokuapp.com/sports"
 ```
 
 > JSON response:
@@ -78,7 +78,7 @@ This endpoint retrieves all sports meeting specific criteria
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/api/v1/sports`
+`GET https://sports-decathlon.herokuapp.com/sports`
 
 ### Query Parameters
 
@@ -87,11 +87,12 @@ Search query errors will be responded to with specific error information, and an
 Parameter | Example          | Description
 --------- | -------          | -----------
 page      | `1`              | For performance reasons, results are paginated by 10 items per page
+q         | `soccer`         | Query a sport by its name, using a string for searching
 
 ## Querying a single Sport
 
 ```shell
-curl "https://sports-decathlon.herokuapp.com/api/v1/sports/swimming"
+curl "https://sports-decathlon.herokuapp.com/sports/swimming"
 ```
 
 > JSON Response
@@ -147,8 +148,7 @@ If a sport is a child, the `parent_id` column will display the ID of its parent.
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/api/v1/sports`
-`GET https://sports-decathlon.herokuapp.com/api/v1/278`
+`GET https://sports-decathlon.herokuapp.com/sports/278`
 
 ### Query Parameters
 
@@ -158,7 +158,7 @@ Search query errors will be responded to with specific error information, and an
 
 ```shell
 curl
-"https://sports-decathlon.herokuapp.com/api/v1/sports/:sport_id/recommendations"
+"https://sports-decathlon.herokuapp.com/sports/:sport_id/recommendations"
 ```
 
 > JSON Response
@@ -177,7 +177,7 @@ count     | `5`     | Number of recommendations (Default: 3)
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/api/v1/sports/175/recommendations`
+`GET https://sports-decathlon.herokuapp.com/sports/175/recommendations`
 
 ### Query Parameters
 

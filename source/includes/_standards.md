@@ -15,7 +15,7 @@ If no parameters are passed in, we'll serve up the latest stable version of our
 API
 
 <aside class="notice">
-  V1 of this API is still accessible at /api/v1/sports
+  For legacy purposes, the V1 of this API is still accessible at /api/v1/sports.
 </aside>
 
 ## Pagination
