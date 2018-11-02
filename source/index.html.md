@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - standards
+  - integrations
   - api/sports
   - errors
   - contributing
