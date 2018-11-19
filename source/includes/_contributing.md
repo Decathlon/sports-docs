@@ -2,6 +2,8 @@
 
 **Everyone** is encouraged to help improve this project.
 
+Github Repository: [https://github.com/dktunited/sports-api](https://github.com/dktunited/sports-api)
+
 Here are some ways *you* can contribute:
 
 * by reporting bugs, typos and missing docs
