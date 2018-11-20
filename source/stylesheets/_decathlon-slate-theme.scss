@@ -7,7 +7,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 .toc-wrapper {
   .logo {
-    width: 200px !important;
+    // width: 200px !important;
+    display: block;
+    max-width: 40%;
+    margin-bottom: 0px;
+    margin: 5% 0;
+    padding: 16px;
   }
   >.search {
     margin-top: 55px;
