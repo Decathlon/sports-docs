@@ -28,6 +28,10 @@ Or install it yourself as:
 
 `sport = Decathlon::Sports.find(175)`
 
+#### Decathlon::Sports.find
+
+`sport = Decathlon::Sports.search('Snowboarding')`
+
 #### Decathlon::Sports::Recommendations.get
 
 `recommendations = Decathlon::Sports::Recommendations.get(175)`
