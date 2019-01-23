@@ -84,10 +84,12 @@ This endpoint retrieves all sports meeting specific criteria
 
 Search query errors will be responded to with specific error information, and an `HTTP 404` status code.
 
-Parameter | Example          | Description
---------- | -------          | -----------
-page      | `1`              | For performance reasons, results are paginated by 10 items per page
-q         | `soccer`         | Query a sport by its name, using a string for searching
+Parameter    | Example  | Description
+---------    | -------  | -----------
+q            | `soccer` | Query a sport by its name, using a string for searching
+tag          | `winter` | Filter sports by a tag.
+decathlon_id | `175`    | Search sports by Decathlon's legacy ID
+parent       | '1'      | Boolean parameter to display parent-sports only.
 
 ## Querying a single Sport
 
