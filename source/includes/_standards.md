@@ -1,6 +1,6 @@
 # Standards
 
-This API follows the [JSON:API specs](https://jsonapi.org)
+This API follows the [JSON:API](https://jsonapi.org) spec
 
 ## Localization
 
