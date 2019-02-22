@@ -2,8 +2,6 @@
 
 **Everyone** is encouraged to help improve this project.
 
-Github Repository: [https://github.com/dktunited/sports-api](https://github.com/dktunited/sports-api)
-
 Here are some ways *you* can contribute:
 
 * by reporting bugs, typos and missing docs
@@ -12,6 +10,8 @@ Here are some ways *you* can contribute:
 * by writing specifications
 * by writing code ( **no patch is too small** : fix typos, add comments, clean up inconsistent whitespace )
 * by refactoring sample code
+
+### Submit your contribution [here](https://developers-decathlon.canny.io/sports-api)
 
 ## Submitting a Pull Request
 

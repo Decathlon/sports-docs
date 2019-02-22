@@ -1,5 +1,7 @@
 # Standards
 
+This API follows the [JSON:API](https://jsonapi.org) spec
+
 ## Localization
 
 Our API supports localization of the sports names. Such data can be retrieved by

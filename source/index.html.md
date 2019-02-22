@@ -12,6 +12,7 @@ includes:
   - integrations
   - api/sports
   - errors
+  - faq
   - contributing
 
 search: true
