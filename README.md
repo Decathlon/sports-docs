@@ -5,6 +5,7 @@ Sports at Decathlon. This data is primarily sourced from our global network of
 sport experts and our beloved friends
 
 Production URL: https://sports-decathlon.herokuapp.com
+
 Staging URL: https://sports-staging.herokuapp.com
 
 ## Sections
@@ -15,5 +16,3 @@ Staging URL: https://sports-staging.herokuapp.com
 * [Errors](https://github.com/Decathlon/sports-docs/blob/master/04_errors.md)
 * [FAQ](https://github.com/Decathlon/sports-docs/blob/master/05_faq.md)
 * [Contributing](https://github.com/Decathlon/sports-docs/blob/master/06_contributing.md)
-
-_Decathlon Canada_
