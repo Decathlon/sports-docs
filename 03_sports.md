@@ -3,7 +3,7 @@
 ## List Sports
 
 ```shell
-curl "https://sports-decathlon.herokuapp.com/sports"
+curl "https://sports.api.decathlon.com/sports"
 ```
 
 > JSON response:
@@ -55,7 +55,7 @@ curl "https://sports-decathlon.herokuapp.com/sports"
                 "name": "Body Building / Cross Training",
                 "description": null,
                 "parent_id": 486,
-                "slug": "body-building-cross-training-dc159b85-6e37-4910-8f78-011ec1c2a041",
+                "slug": "body-building-cross-training",
                 "locale": "en"
             },
             "relationships": {
@@ -78,7 +78,7 @@ This endpoint retrieves all sports meeting specific criteria
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/sports`
+`GET https://sports.api.decathlon.com/sports`
 
 ### Query Parameters
 
@@ -89,12 +89,12 @@ Parameter    | Example  | Description
 q            | `soccer` | Query a sport by its name, using a string for searching
 tag          | `winter` | Filter sports by a tag.
 decathlon_id | `175`    | Search sports by Decathlon's legacy ID
-parent       | '1'      | Boolean parameter to display parent-sports only.
+parents_only | `true`   | Boolean parameter to display parent-sports only.
 
 ## Querying a single Sport
 
 ```shell
-curl "https://sports-decathlon.herokuapp.com/sports/swimming"
+curl "https://sports.api.decathlon.com/sports/swimming"
 ```
 
 > JSON Response
@@ -150,7 +150,7 @@ If a sport is a child, the `parent_id` column will display the ID of its parent.
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/sports/278`
+`GET https://sports.api.decathlon.com/sports/278`
 
 ### Query Parameters
 
@@ -160,7 +160,7 @@ Search query errors will be responded to with specific error information, and an
 
 ```shell
 curl
-"https://sports-decathlon.herokuapp.com/sports/:sport_id/recommendations"
+"https://sports.api.decathlon.com/sports/:sport_id/recommendations"
 ```
 
 > JSON Response
@@ -179,7 +179,7 @@ count     | `5`     | Number of recommendations (Default: 3)
 
 ### HTTP Request
 
-`GET https://sports-decathlon.herokuapp.com/sports/175/recommendations`
+`GET https://sports.api.decathlon.com/sports/175/recommendations`
 
 ### Query Parameters
 
