@@ -9,5 +9,3 @@ Error Code | Meaning
 404        | Not Found -- The specified community wasn't found.
 422        | Unprocessable Entity -- There was a validation error with your request.
 500        | Internal Server Error -- We had a problem with our server. Try again later.
-
-<h2> </h2>
