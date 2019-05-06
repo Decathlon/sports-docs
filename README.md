@@ -13,9 +13,9 @@ Staging URL: https://sports-staging.herokuapp.com
 
 ## Sections
 * [Introduction](https://github.com/Decathlon/sports-docs/blob/master/00_introduction.md)
-* [Standards](https://github.com/Decathlon/sports-docs/blob/master/01_standards.md)
+* [API Reference](https://github.com/Decathlon/sports-docs/blob/master/01_api_reference.md)
 * [Integrations](https://github.com/Decathlon/sports-docs/blob/master/02_integrations.md)
-* [Sports](https://github.com/Decathlon/sports-docs/blob/master/03_sports.md)
+* [Specifications](https://github.com/Decathlon/sports-docs/blob/master/03_specifications.md)
 * [Errors](https://github.com/Decathlon/sports-docs/blob/master/04_errors.md)
 * [FAQ](https://github.com/Decathlon/sports-docs/blob/master/05_faq.md)
 * [Contributing](https://github.com/Decathlon/sports-docs/blob/master/06_contributing.md)
