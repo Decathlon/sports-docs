@@ -75,6 +75,8 @@ curl "https://sports.api.decathlon.com/sports"
 
 This endpoint retrieves all sports meeting specific criteria
 
+Sports are dynamically displayed regarding their popularity in Canada
+
 
 ### HTTP Request
 
@@ -102,7 +104,7 @@ curl "https://sports.api.decathlon.com/sports/swimming"
 ```json
 {
     "data": {
-        "id": "278",
+        "id": "224",
         "type": "sport",
         "attributes": {
             "name": "Swimming",
@@ -129,10 +131,6 @@ curl "https://sports.api.decathlon.com/sports/swimming"
                     {
                         "id": "449",
                         "type": "sport"
-                    },
-                    {
-                        "id": "224",
-                        "type": "sport"
                     }
                 ]
             }
@@ -145,60 +143,120 @@ This endpoint retrieves a sport (and its children, if any).
 The ID parameter can be passed in as a `slug` or `id` for convenience.
 In the case a sport doesn't have children, or if it's already a child, the relationship object will return `null`.
 If a sport is a child, the `parent_id` column will display the ID of its parent.
-
+In the case a sport is a parent, the relationship object return a `relateds` column wich display parent sports ID's powered by AI algorithms on a corpus of sports descriptions.
 ### HTTP Request
 
-`GET https://sports.api.decathlon.com/sports/278`
+`GET https://sports.api.decathlon.com/sports/224`
 
 ### Query Parameters
 
 Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
 
-## Fetching recommendations by popularity
+## Fetching recommendations by city
 
 ```shell
 curl
-"https://sports.api.decathlon.com/sports/:sport_id/recommendations"
+"https://sports.api.decathlon.com/sports/recommendations/:location"
 ```
 
 > JSON Response
 
 ```json
-[ "123", "456", "789" ]
+ "data": [
+    {
+            "id": 147,
+            "type": "sport",
+            "attributes": {
+                "name": "Hiking",
+                "description": null,
+                "parent_id": null,
+                "decathlon_id": 458,
+                "slug": "hiking",
+                "locale": "en"
+            },
+            "relationships": {
+                "children": {
+                    "data": [
+                        {
+                            "id": 46,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 438,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 441,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 440,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 625,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 626,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 627,
+                            "type": "sport"
+                        },
+                        {
+                            "id": 439,
+                            "type": "sport"
+                        }
+                    ]
+                },
+                "parent": {
+                    "data": null
+                },
+                "group": {
+                    "data": {
+                        "id": 9,
+                        "type": "group"
+                    }
+                },
+                "tags": {
+                    "data": ""
+                },
+                "images": {
+                    "data": []
+                }
+            }
+        },
+        {
+            "id": 284,
+            "type": "sport",
+            "attributes": {
+                "name": "Hybrid biking",
+                "description": null,
+                "parent_id": null,
+                "decathlon_id": 284,
+                "slug": "hybrid-biking",
+                "locale": "en"
+            },
+            "relationships": {
+                "children": {
+                    "data": [
+                        {
+                        ...
 ```
 
-This endpoint provides sport recommendations based on machine learning algorithms.
-
-Parameter | Example | Description
---------- | ------- | -----------
-sport_id  | `175`   | Sport ID
-count     | `5`     | Number of recommendations (Default: 3)
-
-## Fetching recommendations by location
-
-```shell
-curl
-"https://sports.api.decathlon.com/sports/:sport_id/recommendations/:location"
-```
-
-> JSON Response
-
-```json
-[ "123", "456", "789" ]
-```
-
-This endpoint provides sport recommendations based on popularity within a location and machine learning algorithms.
+This endpoint provides sport recommendations based on popularity within a city and AI algorithms.
 
 Parameter | Example       | Description
 --------- | -------       | -----------
 location  | `montreal_ca` | City name and 2-letter country code
-sport_id  | `175`         | Sport ID
 count     | `5`           | Number of recommendations (Default: 3)
 
 
 ### HTTP Request
 
-`GET https://sports.api.decathlon.com/sports/175/recommendations`
+`GET https://sports.api.decathlon.com/sports/recommendations/montreal_ca`
 
 ### Query Parameters
 
