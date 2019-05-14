@@ -75,8 +75,11 @@ curl "https://sports.api.decathlon.com/sports"
 
 This endpoint retrieves all sports meeting specific criteria
 
-Sports are dynamically displayed regarding their popularity in Canada
+Sports are dynamically displayed given their popularity in Canada
 
+The sports are splitted accross 3 levels: Groups, Parents & Children
+
+For instance, 'Adventure & Travel sports' is group 9 in which 'Hiking' is parent 147 and in which 'Snow hiking' is children 441.
 
 ### HTTP Request
 
@@ -143,7 +146,9 @@ This endpoint retrieves a sport (and its children, if any).
 The ID parameter can be passed in as a `slug` or `id` for convenience.
 In the case a sport doesn't have children, or if it's already a child, the relationship object will return `null`.
 If a sport is a child, the `parent_id` column will display the ID of its parent.
-In the case a sport is a parent, the relationship object return a `relateds` column wich display parent sports ID's powered by AI algorithms on a corpus of sports descriptions.
+
+In the case a sport is a parent, the relationship object return a `related` field wich display the most similar parent sports The most similar sports are identified by an AI algorithms trained from a corpus of sports descriptions.
+
 ### HTTP Request
 
 `GET https://sports.api.decathlon.com/sports/224`
@@ -152,7 +157,7 @@ In the case a sport is a parent, the relationship object return a `relateds` col
 
 Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
 
-## Fetching recommendations by city
+## Fetching sports recommendations by location
 
 ```shell
 curl
@@ -246,13 +251,17 @@ curl
                         ...
 ```
 
-This endpoint provides sport recommendations based on popularity within a city and AI algorithms.
+This endpoint provides sport recommendations based on popularity at the given location. 
 
-Parameter | Example       | Description
---------- | -------       | -----------
-location  | `montreal_ca` | City name and 2-letter country code
-count     | `5`           | Number of recommendations (Default: 3)
+There are 5 possible data sources to compute popularity.
 
+Source       | Location           | Example                                          | Description
+---------    | -------            | ---------------------------------------------    | ------------
+city         | `city_countrycode` | ?source=city&location=montreal_ca                | Compute popularity from decathlon data in each city. 
+decathlon    | `lat,lng`          | ?source=decathlon&lat=45.2&lng=-73.5             | Compute popularity from decathlon web interactions.
+sport_places | `lat,lng`          | ?source=sport_places&lat=45.2&lng=-73.5          | Compute popularity from [sport places API](https://developers.decathlon.com/sportplaces/)
+amilia       | `lat,lng`          | ?source=amilia&lat=45.2&lng=-73.5                | Compute popularity from [amilia sport activities](https://www.amilia.com/)
+popularity   | `lat,lng`          | ?source=popularity&lat=45.2&lng=-73.5            | Smart aggregation of all the data sources
 
 ### HTTP Request
 
