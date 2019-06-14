@@ -195,6 +195,25 @@ location  | `montreal_ca` | City name and 2-letter country code
 sport_id  | `175`         | Sport ID
 count     | `5`           | Number of recommendations (Default: 3)
 
+## Fetching recommendations based on density of places per country
+
+```shell
+curl
+"https://sports.api.decathlon.com/sports/:sport_id/recommendations/:country"
+```
+
+> JSON Response
+
+```json
+[ "123", "456", "789" ]
+```
+
+This endpoint provides sport recommendations based on an average density of
+places in a specified country.
+
+Parameter | Example       | Description
+--------- | -------       | -----------
+country   | `CA`          | 2-letter country code
 
 ### HTTP Request
 
