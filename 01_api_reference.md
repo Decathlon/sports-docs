@@ -154,7 +154,27 @@ If a sport is a child, the `parent_id` column will display the ID of its parent.
 
 Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
 
-## Fetching recommendations by popularity
+## Fetching recommendations by geolocation popularity
+
+```shell
+curl
+"https://sports.api.decathlon.com/sports/recommendations/geolocation?coordinates=-73.582,45.511&count=3"
+```
+
+> JSON Response
+
+```json
+[ "123", "456", "789" ]
+```
+
+Most popular sports in a radius of 15 kilometers around the given coordinates based on an AI that analyses internal and external data-sets (events, places, web traffic, ... )
+
+Parameter | Example | Description
+--------- | ------- | -----------
+coordinates     | `-73,45`     | Longitude, latitude for the geolocation filter
+count     | `5`     | Number of recommendations (Default: 3)
+
+## Fetching recommendations by popularity (DEPRECATION WARNING)
 
 ```shell
 curl
@@ -171,35 +191,14 @@ This endpoint provides sport recommendations based on machine learning algorithm
 
 Parameter | Example | Description
 --------- | ------- | -----------
-sport_id  | `175`   | Sport ID
+coordinates     | `-73,45`     | Longitude, latitude of the origin
 count     | `5`     | Number of recommendations (Default: 3)
 
-## Fetching recommendations by location
+## Fetching recommendations based on density of places per country (DEPRECATION WARNING)
 
 ```shell
 curl
-"https://sports.api.decathlon.com/sports/:sport_id/recommendations/:location"
-```
-
-> JSON Response
-
-```json
-[ "123", "456", "789" ]
-```
-
-This endpoint provides sport recommendations based on popularity within a location and machine learning algorithms.
-
-Parameter | Example       | Description
---------- | -------       | -----------
-location  | `montreal_ca` | City name and 2-letter country code
-sport_id  | `175`         | Sport ID
-count     | `5`           | Number of recommendations (Default: 3)
-
-## Fetching recommendations based on density of places per country
-
-```shell
-curl
-"https://sports.api.decathlon.com/sports/:sport_id/recommendations/:country"
+"https://sports.api.decathlon.com/sports/recommendations/:country"
 ```
 
 > JSON Response
@@ -501,7 +500,7 @@ curl "https://sports.api.decathlon.com/sports"
 ```
 
 This endpoint retrieves all sport groups and allows users to have a bird's eye
-view on how our sports are organized an related to one another.
+view on how our sports are organized and related to one another.
 
 ### HTTP Request
 
