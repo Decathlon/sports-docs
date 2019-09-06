@@ -22,7 +22,7 @@ Or install it yourself as:
 
 #### Decathlon::Sports.all
 
-`sports = Decathlon::Sports.all`
+`sports = Decathlon::Sports.all(params: {}, headers: {})`
 
 #### Decathlon::Sports.find
 
@@ -30,11 +30,13 @@ Or install it yourself as:
 
 #### Decathlon::Sports.find
 
-`sport = Decathlon::Sports.search('Snowboarding')`
+`sport = Decathlon::Sports.search('Snowboarding', params: {}, headers: {})`
 
 #### Decathlon::Sports::Recommendations.get
 
 `recommendations = Decathlon::Sports::Recommendations.get(175)`
+
+> The `params: {}` and `headers: {}` arguments are optional and interchangeable.
 
 ### Contributing
 
