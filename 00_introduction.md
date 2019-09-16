@@ -1,6 +1,6 @@
 <span class="product-title">Sports API</span>
 
-sports.api.decathlon.com provides a RESTful API that allows you to lookup intelligence, data and content related to sports.
+sports.api.decathlon.com provides an API that provides a collection of micro services pertaining to sport intelligence as well as data and content related to sports.
 
 #Getting started
 
@@ -134,14 +134,48 @@ sports.api.decathlon.com provides a RESTful API that allows you to lookup intell
 }
 ```
 
-**Authentication**
+**1. Familiarize yourself with the sport our features, sport data structure and the concept of _source_ :**
 
-No authentication is required. The API is fully OPEN and will stay as such. Keep in mind that a throttle will eventually be imposed on users that have not registered for an key.
+### Features
+
+&nbsp;&nbsp;**Resourceful list of sports**<br/>
+    &nbsp;&nbsp;&nbsp;- _Aliases, descriptions, images, relationships, (...) for most sports_<br/>
+&nbsp;&nbsp;**Intelligent Sports Search**<br/>
+    &nbsp;&nbsp;&nbsp;- _Sport attributes indexed and searchable_<br/>
+&nbsp;&nbsp;**Combined location and application based sports recommendations**<br/>
+    &nbsp;&nbsp;&nbsp;- _Geolocalized sport popularity and data driven application specific recommendations_<br/>
+&nbsp;&nbsp;**Sports practice similarities matrix**<br/>
+    &nbsp;&nbsp;&nbsp;- _Relationships between sports based on how similar they are to one another_<br/>
+
+### Data structure
+  Notable details:
+ - sports with a `parent_id: null` are considered parent sports. They are often considered more important sports in term of their historical and popularity relevance.
+ - Sports with a `parent_id: :id`, are children of those sports. By children we imply sports who's practice and rules were influenced by their parent.
+ - Nested inside `relationships` is the `related` node where you will find sports which are similar to the current sport. The first sport in the list being the most similar.
 
 
-**Make your first API call**
+### Data Sources
+
+  Most of the intelligence in the sports API comes from studying and analyzing vast amounts of data. Our artifical intelligence team has created models which can be applied to different data sets. By being able to choose which data set we are sourcing our intelligence from, we can offer results that are better tailored to your application.
+
+Source    | Description
+---------    | -------
+`Popular` | The default source and most complex one. It's based on a machine learning algorithm that will adjust itself based on the quality of the available data near the specified coordinates. Example: Near calgary, we have very litlle sports places data, but we have a lot of events then the popular source will give more weight to the events when calculating the popularity.
+`Activites` | Data sourced from the <a style="font-style: bold" href="https://developers.decathlon.com/products/sport-activities/docs" target="_blank">`Decathlon activities API`</a>
+`places` | Data sourced from the <a style="font-style: bold" href="https://developers.decathlon.com/products/sport-activities/docs" target="_blank">`Decahtlon sport places API`</a>
+`decathlon` | Data sourced from the traffic on the Decathlon united websites. (<a href="https://fr.batchgeo.com/map/08103d15ce7f0a4e1f6a7cf3115583a6" target="_blank">coverage</a>)
+
+
+**2. Make your first API Call!**
 
 You are ready to go! We suggest making your first API call by querying for popular <a href="#recommendations">sports recommendations near you </a>
+
+
+<hr/>
+
+### Authentication
+
+No authentication is required. The API is fully OPEN and will stay as such. Keep in mind that a throttle will eventually be imposed on users that have not registered for an key.
 
 
 <div style="display: none">

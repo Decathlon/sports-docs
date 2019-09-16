@@ -11,7 +11,7 @@ Here are some ways *you* can contribute:
 * by writing code ( **no patch is too small** : fix typos, add comments, clean up inconsistent whitespace )
 * by refactoring sample code
 
-### Submit your contribution 
+### Submit your contribution
 
 URL:
 [https://developers-decathlon.canny.io/sports-api](https://developers-decathlon.canny.io/sports-api)
