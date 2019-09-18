@@ -1,17 +1,161 @@
 # API Reference
 
-<div id="isearch"></div>
-
-## Search
-
-Given an application source <i>(or multiple)</i>, coordinates and a search query: the endpoint will return you with a list of <u><i>relevant sports</i></u> based on language recognition, synonyms, lexical champ, tags, descriptions. Prior to being returned, the list will be <u><i>reindexed based on the popularity</i></u> of each sport in the vicinity of the given coordinates.
-
-**Showcase**
-
-To easily play around with the various parameters, we built a <a style="font-style: bold" href="https://quiet-mesa-31414.herokuapp.com/" target="_blank">showcase</a>
+## List of sports
 
 ```shell
-curl "https://sports.api.decathlon.com/sports/search/:query?source=:source&coordinates=:coordinates"
+curl "https://sports.api.decathlon.com/sports"
+```
+
+> JSON response:
+
+```json
+{
+    "data": [
+        {
+            "id": "224",
+            "type": "sport",
+            "attributes": {
+                "name": "Swimming",
+                "description": null,
+                "parent_id": null,
+                "decathlon_id": 224,
+                "slug": "swimming",
+                "locale": "en",
+                "weather": []
+            },
+            "relationships": {
+                "tags": {
+                  "data": [
+                      "bathing",
+                      "swimming-pool",
+                      "triathlon",
+                      "crawl",
+                      "breaststroke",
+                      "butterfly",
+                      "backstroke",
+                      "freestyle",
+                      "open-water-swimming",
+                      "marathon-swimming",
+                      "synchronized-swimming",
+                      "paralympic-swimming",
+                      "aqualearning",
+                      "competitive-swimming"
+                  ]
+                },
+                "children": {
+                    "data": [
+                        {
+                            "id": "331",
+                            "type": "sport"
+                        },
+                      //...
+                    ]
+                },
+              //...
+            },
+          //...
+        },
+        {
+            "id": "291",
+            "type": "sport",
+            "attributes": {
+                "name": "Body Building / Cross Training",
+                "description": null,
+                "parent_id": 486,
+                "slug": "body-building-cross-training",
+                "locale": "en"
+            },
+            "relationships": {
+                "parent": {
+                    "data": {
+                        "id": "486",
+                        "type": "sport"
+                    },
+                  //...
+                }
+            },
+          //...
+        },
+      //...
+    ]
+}
+
+```
+
+This endpoint returns a detailled collection of all the sports in our database.
+
+### HTTP Request
+
+`GET https://sports.api.decathlon.com/sports`
+
+### Request Parameters
+
+Parameter    | Example  | Description
+---------    | -------  | -----------
+tag          | `'race'` | Filter out sports not containing the tag.
+parents_only | `true`   | Filter out sports that are not considered _parent sports_.
+has_icon    | `true` | Filter out sports which do not have an associated icon.
+has\_decahtlon\_id | `true`   | _Decathlon specific logic:_ Filter out sports that are not matched to a masterdata sport.
+
+## Querying a single Sport
+
+```shell
+curl "https://sports.api.decathlon.com/sports/224"
+```
+
+> JSON Response
+
+```json
+{
+    "data": {
+        "id": "224",
+        "type": "sport",
+        "attributes": {
+            "name": "Swimming",
+            "description": null,
+            "parent_id": null,
+            "slug": "swimming",
+            "locale": "en",
+            "weather": [ ],
+            "icon": "https://sports-api-production.s3.amazonaws.com/uploads/sport/icon/224/224.svg"
+        },
+        "relationships": {
+            "children": {
+                "data": [
+                    {
+                        "id": "331",
+                        "type": "sport"
+                    },
+                    {
+                        "id": "219",
+                        "type": "sport"
+                    },
+                  //...
+                ]
+            },
+          //...
+        }
+    }
+}
+```
+
+This endpoint retrieves a single sport.<br/>
+The ID parameter can be passed in as a `slug` or `id` for convenience.<br/>
+
+### HTTP Request
+
+`GET https://sports.api.decathlon.com/sports/:id`
+
+### Request Parameters
+
+The only accepted (and required) parameter for this endpoint is the sport `id` or `slug`
+
+<div id="isearch"></div>
+
+## Intelligent Search
+
+```shell
+curl "https://sports.api.decathlon.com/sports/search/water?coordinates=-73.5826985,45.5119864"
 ```
 > JSON response:
 
@@ -131,219 +275,95 @@ curl "https://sports.api.decathlon.com/sports/search/:query?source=:source&coord
         "attributes": {
             "name": "Aquafit",
     //...
+    },
+  }
+]
 ```
 
-### Query parameters
-Parameter    | Default  | Example | Description
-:---    | :---:  | :---: | :---
-query        |   | water |Filter sports by their relevance to your query.
-source       | `popular`| One of : |`popular, decathlon, activities, places, events`
-coordinates  |\***required**  |-73.5826985,45.5119864| (`longitude, latitude`) Sport popularity is geolocalized.
-has\_decathlon\_id | false | true | Will only return sports containing a Decathlon ID
-has_icon    | false | true  | Filter by sports which have an associated icon
-parents_only | false | true | Will only return sports that have parent_id: null
-details      | true  | false | If false, will return a minified payload
-strict       | false | true  | If true, will strictly search for sport who's name contains the query
+Given coordinates and a search query: the endpoint will return you with a list of <u><i>relevant sports</i></u> by searching through: ` synonyms, lexical champ, tags and descriptions`.
 
-## Listing
+**Assuring location and application relevance:** Prior to being returned, the results will be <u><i>reindexed based on the popularity</i></u> of the sports in the vicinity of the given coordinates. If a source is provided, the popularity attributed to each sport will be influenced by the specified dataset.
+<br/><br/>
 
-```shell
-curl "https://sports.api.decathlon.com/sports"
-```
 
-> JSON response:
 
-```json
-{
-    "data": [
-        {
-            "id": "224",
-            "type": "sport",
-            "attributes": {
-                "name": "Swimming",
-                "description": null,
-                "parent_id": null,
-                "decathlon_id": 224,
-                "slug": "swimming",
-                "locale": "en",
-                "weather": []
-            },
-            "relationships": {
-            		"tags": {
-	                "data": [
-	                    "bathing",
-	                    "swimming-pool",
-	                    "triathlon",
-	                    "crawl",
-	                    "breaststroke",
-	                    "butterfly",
-	                    "backstroke",
-	                    "freestyle",
-	                    "open-water-swimming",
-	                    "marathon-swimming",
-	                    "synchronized-swimming",
-	                    "paralympic-swimming",
-	                    "aqualearning",
-	                    "competitive-swimming"
-	                ]
-            		},
-                "children": {
-                    "data": [
-                        {
-                            "id": "331",
-                            "type": "sport"
-                        },
-                        {
-                            "id": "219",
-                            "type": "sport"
-                        },
-                        {
-                            "id": "405",
-                            "type": "sport"
-                        },
-                        {
-                            "id": "449",
-                            "type": "sport"
-                        },
-                        {
-                            "id": "224",
-                            "type": "sport"
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "id": "291",
-            "type": "sport",
-            "attributes": {
-                "name": "Body Building / Cross Training",
-                "description": null,
-                "parent_id": 486,
-                "slug": "body-building-cross-training",
-                "locale": "en"
-            },
-            "relationships": {
-                "parent": {
-                    "data": {
-                        "id": "486",
-                        "type": "sport"
-                    }
-                }
-            }
-        },
-        //...
-    ]
-}
-
-```
-
-While the search endpoint has a looser interpretation, the sports endpoint is considered strict<br/>
-Default when not passing a query is to return the entire list.
-
+Example: <a style="font-style: bold" href="https://sports.api.decathlon.com/sports/search/water?source=activities&coordinates=-73.123,45.123" target="_blank">`https://sports.api.decathlon.com/sports/search/water?source=activities&coordinates=-73.123,45.123`</a>, will return water sports and the results in the query will be sorted by how often these sports have activities listed for them near the coordinates.
 
 ### HTTP Request
 
-`GET https://sports.api.decathlon.com/sports`
+`GET https://sports.api.decathlon.com/sportssearch/:query?coordinates=:coordinates"`
 
-### Query Parameters
+### Request Parameters
 
-Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
+The only required parameter for this endpoint is the `:coordinates`.
 
-Parameter    | Example  | Description
----------    | -------  | -----------
-q            | `socc`   | Query a sport by its name, using a string for searching
-tag          | `winter` | Filter sports by a tag.
-decathlon_id | `175`    | Search sports by Decathlon's legacy ID
-parents_only | `true`   | Boolean parameter to display parent-sports only.
-has\_decahtlon\_id | `true`   | Boolean parameter to display decathlon legacy sports only.
-has_icon    | _true_ or _false_ | Filter by sports which have an associated icon
+Parameter    |  Example   | Description
+:---               |  :---:     | :---
+query              |  `'water'`               | Filter sports by their relevance to your query.
+coordinates        | `-73.5826985,45.5119864` | (`longitude, latitude`) Sport popularity is geolocalized.
+source             | `popular`                | Influence popularity re-indexing by application: `popular, decathlon, activities, places, events` (default: `popular`)
+has_icon           | `true`  | Filter out sports without an associated icon.
+parents_only       | `true`  | Filter out sports that are not considered _parent sports_.
+strict             | `true`  | If `true`, will perform a search for sport who's name contains the exact `query`
+has\_decathlon\_id | `true`  | _Decathlon specific logic:_ Filter out sports that are not matched to a masterdata sport.
+**Showcase**
 
-## Querying a single Sport
-
-```shell
-curl "https://sports.api.decathlon.com/sports/:id"
-```
-
-> JSON Response
-
-```json
-{
-    "data": {
-        "id": "278",
-        "type": "sport",
-        "attributes": {
-            "name": "Swimming",
-            "description": null,
-            "parent_id": null,
-            "slug": "swimming",
-            "locale": "en"
-        },
-        "relationships": {
-            "children": {
-                "data": [
-                    {
-                        "id": "331",
-                        "type": "sport"
-                    },
-                    {
-                        "id": "219",
-                        "type": "sport"
-                    },
-                    {
-                        "id": "405",
-                        "type": "sport"
-                    },
-                    {
-                        "id": "449",
-                        "type": "sport"
-                    },
-                    {
-                        "id": "224",
-                        "type": "sport"
-                    }
-                ]
-            }
-        }
-    }
-}
-```
-
-This endpoint retrieves a sport (and its children, if any).
-The ID parameter can be passed in as a `slug` or `id` for convenience.
-In the case a sport doesn't have children, or if it's already a child, the relationship object will return `null`.
-If a sport is a child, the `parent_id` column will display the ID of its parent.
-
-### HTTP Request
-
-`GET https://sports.api.decathlon.com/sports/278`
-
-### Query Parameters
-
-Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
+To easily explore the various parameters, we built a <a style="font-style: bold" href="https://quiet-mesa-31414.herokuapp.com/" target="_blank">showcase</a>
 
 ## Location based recommendations
 <div id="recommendations"></div>
 
 ```shell
 curl
-"https://sports.api.decathlon.com/sports/recommendations/geolocation?coordinates=-73.582,45.511&count=3"
+"https://sports.api.decathlon.com/sports/recommendations/geolocation?coordinates=-73.582,45.511"
 ```
 
 > JSON Response
 
 ```json
-[ "123", "456", "789" ]
+[
+    {
+        "id": 224,
+        "type": "sport",
+        "attributes": {
+            "name": "Swimming",
+            "description": "Swimming includes several sports that are practiced on the surface and/or under the water. It allows you to use your whole body to move, sometimes in speed trials, sometimes in artistic routines, but requiring at all times a great coordination. Above all, thanks to the effect of gravity, swimming helps to minimize the impact of force on your body and joints, in addition to being a complete and very accessible sport that can easily allow you to feel like a fish in the water!\n",
+            "parent_id": null,
+            "decathlon_id": 224,
+            "slug": "swimming",
+            "locale": "en",
+            "weather": []
+        },
+      //...
+    },
+    {
+        "id": 219,
+        "type": "sport",
+        "attributes": {
+            "name": "Aquafit",
+      //...
+    },
+  }
+]
 ```
 
-From the coordinates, it'll find the nearest city with valid contextual data and return the most popular sports for your desired application. <a href="https://fr.batchgeo.com/map/08103d15ce7f0a4e1f6a7cf3115583a6">View the web traffic coverage</a>
+From the coordinates, it'll find the nearest city with valid contextual data and return the most popular sports for your desired application.
+
+### HTTP Request
+
+`GET https://sports.api.decathlon.com/sports/recommendations/geolocation?coordinates=:coordinates"`
+
+### Request Parameters
+
+The only required parameter for this endpoint is the `:coordinates`.
 
 Parameter | Example | Description
 --------- | ------- | -----------
-coordinates     | `-73,45` | \***Required** `Longitude, latitude` for the geolocation filter
-count     | `5`     | Number of recommendations (Default: 3)
-source    | `popular` | One of : `popular, decathlon, activities, places, amilia`
-has_icon    | _true_ or _false_ | Filter by sports which have an associated icon
+coordinates     | `-73.5826985,45.5119864` | (`longitude, latitude`) Sport popularity is geolocalized.
+source             | `popular`                | Influence popularity indexing by application: `popular, decathlon, activities, places, events` (default: `popular`)
+has_icon           | `true`  | Filter out sports without an associated icon.
+parents_only       | `true`  | Filter out sports that are not considered _parent sports_.
+
 ## Listing Sport Groups
 
 ```shell
@@ -417,7 +437,7 @@ view on how our sports are organized and related to one another.
 
 `GET https://sports.api.decathlon.com/groups`
 
-### Query Parameters
+### Request Parameters
 
 This endpoint accepts no parameters.
 
@@ -525,7 +545,7 @@ In the case a group doesn't have any children, the relationship object will retu
 
 `GET https://sports.api.decathlon.com/groups/water-aerobics`
 
-### Query Parameters
+### Request Parameters
 
 Search query errors will be rescued with specific error messages, and an `HTTP 404` status code.
 
