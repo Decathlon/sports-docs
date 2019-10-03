@@ -134,7 +134,7 @@ sports.api.decathlon.com provides an API that provides a collection of micro ser
 }
 ```
 
-**1. Familiarize yourself with the sport our features, sport data structure and the concept of _source_ :**
+**1. Familiarize yourself with our features, sport data structure and the concept of _source_ :**
 
 ### Features
 
